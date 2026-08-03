@@ -197,10 +197,8 @@ int main() {
                     else throw string("Invalid sub-option.");
                 }
                 else throw string("Invalid regulation choice.");
-                 
                 rCount++;
             }
-             
             cout << "\n                 Record Saved! Thank you (´◡`)" << endl;
             cout << "----------------------------------------------------" << endl;
         }
