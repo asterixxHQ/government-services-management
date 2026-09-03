@@ -5,13 +5,14 @@ using namespace std;
 class GovApp {
 protected: 
     string name; 
-    int age, DOB, IN;
+    int age;
+    string DOB, IN; 
 
 public:
     void setName(string n) { name = n; }
     void setAge(int a) { age = a; }
-    void setDOB(int d) { DOB = d; }
-    void setIN(int i) { IN = i; }
+    void setDOB(string d) { DOB = d; } 
+    void setIN(string i) { IN = i; } 
 };
 
 class Documents : public GovApp {
@@ -128,8 +129,8 @@ int main() {
                 continue;
             }
 
-            string n, type; 
-            int a, dob, id;
+            string n, type, dob, id;
+            int a;
 
             cout << "\nEnter legal name: "; 
             cin.ignore(); 
@@ -187,26 +188,26 @@ int main() {
                     r[rCount].setRegDetails("Parking", "Plate: " + to_string(plate) + " (" + city + ")", duration * 5);
                 }
                 else if (regChoice == 2) {
-                    int sub, cardID; string jobTitle;
+                    int sub; string jobTitle, cardID;
                     cout << "\n1. Create New Card\n2. Update Name\nChoose: "; cin >> sub;
 
                     if (sub == 1) {
                         cout << "Card ID: "; cin >> cardID;
                         cout << "Job Title: "; cin.ignore(); getline(cin, jobTitle);
-                        r[rCount].setRegDetails("Labour Card (New)", "ID: " + to_string(cardID) + " | Job: " + jobTitle, 0);
+                        r[rCount].setRegDetails("Labour Card (New)", "ID: " + cardID + " | Job: " + jobTitle, 0);
                     }
                     else if (sub == 2) {
                         cout << "Card ID: "; cin >> cardID;
                         cout << "New Name: "; cin.ignore(); getline(cin, n);
                         r[rCount].setName(n); 
-                        r[rCount].setRegDetails("Labour Card (Update)", "Card ID: " + to_string(cardID), 0);
+                        r[rCount].setRegDetails("Labour Card (Update)", "Card ID: " + cardID, 0);
                     }
                     else throw string("Invalid sub-option.");
                 }
                 else throw string("Invalid regulation choice.");
                 rCount++;
             }
-            cout << "\n                 Record Saved! Thank you (´◡`)" << endl;
+            cout << "\n                    Record Saved! Thank you (´◡`)" << endl;
             cout << "----------------------------------------------------" << endl;
         }
         catch (string msg) {
