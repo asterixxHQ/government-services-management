@@ -1,5 +1,5 @@
 # 🏦 Government Services Management
-This project is a menu - based Government Service Management simulation allowing users to access services like document renewal, utility payment and government regulations. It uses Object-Oriented Programming (OOP) concepts that manages (limited) user profiles and processes the database records.
+This project is a menu - based Government Service Management simulation allowing users to access services like document renewal, utility payment and government regulations. It uses Object-Oriented Programming (OOP) concepts that manages user profiles and processes the database records.
 
 > **⚠️ Limitation Note:**
 > This code currently uses a fixed structured object array to store the data, hence:
