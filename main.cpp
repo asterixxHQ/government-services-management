@@ -2,6 +2,13 @@
 #include <string>
 using namespace std;
 
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define CYAN    "\033[36m"
+
 class GovApp {
 protected: 
     string name; 
@@ -47,9 +54,9 @@ public:
 };
 
 void Documents::showBill() { 
-    cout << "Name: " << name << " \nID: " << IN
+    cout << "Name: " << BOLD << name << RESET << " \nID: " << IN
          << " \nDoc: " << docType << " \nValid: " << validity 
-         << " years \nTotal fee: " << fee << "\n-----------------\n";
+         << " years \nTotal fee: " << GREEN << fee << RESET << "\n-----------------\n";
 }
 
 class Utility : public GovApp {
@@ -64,9 +71,9 @@ public:
 };
 
 void Utility::showBill() {
-    cout << "Name: " << name << " \nID: " << IN
+    cout << "Name: " << BOLD << name << RESET << " \nID: " << IN
          << " \nUtility: " << uType << " \nUnits: " << qty 
-         << " \nTotal fee: " << (qty * 2) << "\n-----------------\n";
+         << " \nTotal fee: " << GREEN << (qty * 2) << RESET << "\n-----------------\n";
 }
 
 class Regulation : public GovApp {
@@ -83,9 +90,9 @@ public:
 };
 
 void Regulation::showBill() {
-    cout << "Name: " << name << " \nID: " << IN
+    cout << "Name: " << BOLD << name << RESET << " \nID: " << IN
          << " \nType: " << regType << " \nDetails: " << details 
-         << " \nTotal Cost: " << cost << " dirhams\n-----------------\n";
+         << " \nTotal Cost: " << GREEN << cost << " dirhams" << RESET << "\n-----------------\n";
 }
 
 int main() {
@@ -94,7 +101,7 @@ int main() {
     Regulation r[30];
     int dCount = 0, uCount = 0, rCount = 0, choice = 0;
 
-    cout << "                    GOVERNMENT DIGITAL PORTAL\n" << endl;
+    cout << CYAN << BOLD << "                    GOVERNMENT DIGITAL PORTAL\n" << RESET << endl;
 
     while (choice != 5) {
         if (cin.fail()) {
@@ -102,25 +109,25 @@ int main() {
             cin.ignore(1000, '\n');
         }
 
-        cout << "\n1. Document Renewal\n2. Pay Utility Bills\n3. Regulation\n4. View Saved Data\n5. Exit\n";
+        cout << BOLD << YELLOW << "\n1. Document Renewal\n2. Pay Utility Bills\n3. Regulation\n4. View Saved Data\n5. Exit\n" << RESET;
         cout << "\nChoose a service: ";
         cin >> choice;
-        cout << " ------------------------------------------ " << endl;
+        cout << CYAN << " ------------------------------------------ " << RESET << endl;
 
         try {
             if (cin.fail() || choice < 1 || choice > 5) throw string("Invalid selection!");
             if (choice == 5) { 
-                cout << "\nThanks for using our services! " << endl; 
+                cout << GREEN << "\nThanks for using our services! " << RESET << endl; 
                 break; 
             }
 
             if (choice == 4) {
-                cout << "\n================ SAVED DATABASE RECORDS ================\n";
-                cout << "\n--- Documents ---\n";
+                cout << CYAN << BOLD << "\n================ SAVED DATABASE RECORDS ================\n" << RESET;
+                cout << YELLOW << "\n--- Documents ---\n" << RESET;
                 for (int i = 0; i < dCount; i++) d[i].showBill();
-                cout << "\n--- Utilities ---\n";
+                cout << YELLOW << "\n--- Utilities ---\n" << RESET;
                 for (int i = 0; i < uCount; i++) u[i].showBill();
-                cout << "\n--- Regulations ---\n";
+                cout << YELLOW << "\n--- Regulations ---\n" << RESET;
                 for (int i = 0; i < rCount; i++) r[i].showBill();
                 
                 cout << "\nPress Enter to continue...";
@@ -207,11 +214,11 @@ int main() {
                 else throw string("Invalid regulation choice.");
                 rCount++;
             }
-            cout << "\n                    Record Saved! Thank you (´◡`)" << endl;
-            cout << "----------------------------------------------------" << endl;
+            cout << GREEN << BOLD << "\n                    Record Saved! Thank you!" << RESET << endl;
+            cout << CYAN << "----------------------------------------------------" << RESET << endl;
         }
         catch (string msg) {
-            cout << "\nError: " << msg << endl;
+            cout << RED << "\nError: " << msg << RESET << endl;
         }
     }
     return 0;
